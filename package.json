@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon --exec babel-node src/server.js"
+    "server": "nodemon --exec babel-node src/server.js",
+    "prestart": "npm run build",
+    "start": "node ./dist/server.js",
+    "build": "npm run clean && npm run build-server",
+    "build-server": "babel src --out-dir dist --source-maps inline --copy-files",
+    "clean": "rm -rf build && mkdir build"
   },
   "repository": {
     "type": "git",
