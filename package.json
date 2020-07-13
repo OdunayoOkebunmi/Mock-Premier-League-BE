@@ -4,13 +4,23 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon --exec babel-node src/server.js",
     "prestart": "npm run build",
     "start": "node ./dist/server.js",
     "build": "npm run clean && npm run build-server",
     "build-server": "babel src --out-dir dist --source-maps inline --copy-files",
-    "clean": "rm -rf build && mkdir build"
+    "clean": "rm -rf build && mkdir build",
+    "migration": "babel-node ./src/database/seeders/users.js",
+    "pretest": "NODE_ENV=test npm run migration",
+    "test": "NODE_ENV=test jest --forceExit --detectOpenHandles  --verbose --maxWorkers=1",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/__mocks__/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -53,10 +63,13 @@
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
     "faker": "^4.1.0",
+    "jest": "^26.1.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
+    "mongodb-memory-server": "^6.6.1",
     "mongoose": "^5.9.23",
     "morgan": "^1.10.0",
+    "supertest": "^4.0.2",
     "uuid": "^3.4.0"
   }
 }

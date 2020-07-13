@@ -14,6 +14,8 @@ if (process.env.NODE_ENV !== 'production') dotenv.config();
 const app = express();
 const debug = Debug(process.env.DEBUG);
 const isProduction = process.env.NODE_ENV === 'production';
+const isTest = process.env.NODE_ENV === 'test';
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(logger(':method :url :status :res[content-length] - :response-time ms'));
@@ -46,9 +48,10 @@ app.all('*', (req, res) => res.status(404).json({
   }
 })();
 
-const server = app.listen(process.env.PORT || 5000, () => {
-  debug(`Listening on port ${server.address().port}`);
-});
-
+if (!isTest) {
+  app.listen(PORT, () => {
+    debug(`Server running on port:${PORT}`);
+  });
+}
 
 export default app;
