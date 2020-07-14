@@ -24,6 +24,7 @@ install:
   - npm install
 
 script:
+  - npm run migration
   - npm test
   - npm build
 
