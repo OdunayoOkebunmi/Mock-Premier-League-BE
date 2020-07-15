@@ -23,7 +23,7 @@ describe('Test user signup', () => {
     done();
   });
   it('should signin an existing user', async (done) => {
-    const res = await request(app).post(`${API_PREFIX}/signin`).send(userData[0]);
+    const res = await request(app).post(`${API_PREFIX}/signin`).send(userData[1]);
     expect(res.status).toBe(200);
     expect(typeof res.body).toBe('object');
     expect(res.body.user).toHaveProperty('token');
