@@ -7,7 +7,7 @@ export const userData = [
     password: 'passwordHash',
   },
   {
-    email: 'janedoe@gmail.com',
+    email: 'janedoe@mail.com',
     password: 'passwordHash1',
   },
   {
