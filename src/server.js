@@ -9,7 +9,7 @@ import router from './routes';
 import connectToDB from './database/config';
 import { serverErrorResponse, developmentServerErrorResponse } from './helper/responseHandler';
 import sessionConfig, { checkRateLimit } from './config/redisConfig';
-import createSeededUsers from './database/seeders/users';
+import { createSeededTeams, createSeededUsers } from './database/seeders/index';
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 
@@ -47,7 +47,7 @@ app.all('*', (req, res) => res.status(404).json({
 
 connectToDB().then(async () => {
   createSeededUsers();
-
+  createSeededTeams();
   if (!isTest) {
     app.listen(PORT, () => {
       debug(`Server running on port:${PORT}`);

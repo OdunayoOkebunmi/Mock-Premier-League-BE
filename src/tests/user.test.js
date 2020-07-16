@@ -1,10 +1,10 @@
 import request from 'supertest';
-import app from '../../server';
-import { userData } from '../mockData';
+import app from '../server';
+import { userData } from './mockData';
 
 const API_PREFIX = '/api/v1/auth';
 
-describe('Test user signup', () => {
+describe('Test user', () => {
   it('should create a user succesfully', async (done) => {
     const res = await request(app).post(`${API_PREFIX}/signup`).send(userData[2]);
     expect(res.status).toBe(201);

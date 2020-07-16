@@ -1,12 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 import faker from 'faker';
-import { hashPassword } from '../middleware/authentication';
 
 export const userData = [
   {
     username: 'admin',
     email: 'admin@mockpl.com',
-    password: hashPassword('passwordHash'),
+    password: 'passwordHash1',
     role: 'admin',
   },
   {
@@ -17,14 +16,29 @@ export const userData = [
     username: 'Jane',
     email: 'janedoe@mail.com',
     password: 'passwordHash1',
+    role: 'admin',
   },
   {
     email: 'janedoex@gmail.com',
     password: 'passwordHash',
   },
   {
+    email: 'admin@mockpl.com',
+    password: 'passwordHash1',
+  },
+  {
     username: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
+  },
+];
+
+export const teamData = [
+  {
+    name: 'South Hampthon',
+  },
+  {},
+  {
+    name: 'North Hampthon',
   },
 ];

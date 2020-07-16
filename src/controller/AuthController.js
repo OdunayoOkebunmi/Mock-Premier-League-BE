@@ -9,7 +9,7 @@ export const createUser = async (req, res, next) => {
   try {
     const {
       body: {
-        email, password, username,
+        email, password, username, role,
       },
     } = req;
 
@@ -19,14 +19,14 @@ export const createUser = async (req, res, next) => {
     }
     const hashedPassword = hashPassword(password);
     const newUser = new User({
-      email, password: hashedPassword, username,
+      email, password: hashedPassword, username, role,
     });
     const {
       _id,
       email: newUserEmail,
-      role,
+      role: newUserRole,
     } = newUser;
-    const token = generateToken(_id, newUserEmail, role);
+    const token = generateToken(_id, newUserEmail, newUserRole);
     await newUser.save();
 
     return successResponse(res, 201, 'user', { message: 'You have successfully created an account', token });
