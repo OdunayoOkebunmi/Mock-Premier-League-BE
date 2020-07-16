@@ -14,6 +14,8 @@ beforeAll(async () => {
   adminUser = await request(app)
     .post(`${API_PREFIX}/auth/signin`)
     .send(userData[4]);
+
+  console.log(adminUser);
 });
 
 describe('Test team', () => {
