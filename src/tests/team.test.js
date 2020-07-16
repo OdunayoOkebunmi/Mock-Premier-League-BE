@@ -9,9 +9,12 @@ let adminUser;
 let teamId;
 
 beforeAll(async () => {
+  await request(app)
+    .post(`${API_PREFIX}/auth/signup`)
+    .send(userData[2]);
   adminUser = await request(app)
     .post(`${API_PREFIX}/auth/signin`)
-    .send(userData[4]);
+    .send(userData[1]);
   console.log(adminUser.body);
 });
 

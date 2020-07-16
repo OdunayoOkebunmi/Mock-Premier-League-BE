@@ -16,6 +16,7 @@ export const userData = [
     username: 'Jane',
     email: 'janedoe@mail.com',
     password: 'passwordHash1',
+    role: 'admin',
   },
   {
     email: 'janedoex@gmail.com',
