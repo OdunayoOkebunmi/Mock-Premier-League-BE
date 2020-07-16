@@ -11,8 +11,7 @@
     "build-server": "babel src --out-dir dist --source-maps inline --copy-files",
     "clean": "rm -rf build && mkdir build",
     "migration": "babel-node ./src/database/seeders/users.js",
-    "pretest": "NODE_ENV=test npm run migration",
-    "test": "NODE_ENV=test jest --forceExit --detectOpenHandles  --verbose --maxWorkers=1",
+    "test": "NODE_ENV=test jest ---runInBand --forceExit --detectOpenHandles",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "jest": {
@@ -53,6 +52,7 @@
     "@babel/polyfill": "^7.8.3",
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
+    "connect-redis": "^5.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
@@ -61,6 +61,7 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.20.1",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "express-validator": "^6.4.0",
     "faker": "^4.1.0",
     "jest": "^26.1.0",
@@ -69,6 +70,7 @@
     "mongodb-memory-server": "^6.6.1",
     "mongoose": "^5.9.23",
     "morgan": "^1.10.0",
+    "redis": "^3.0.2",
     "supertest": "^4.0.2",
     "uuid": "^3.4.0"
   }
