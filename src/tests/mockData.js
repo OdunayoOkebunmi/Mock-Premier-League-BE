@@ -1,12 +1,11 @@
 /* eslint-disable import/prefer-default-export */
 import faker from 'faker';
-import { hashPassword } from '../middleware/authentication';
 
 export const userData = [
   {
     username: 'admin',
     email: 'admin@mockpl.com',
-    password: hashPassword('passwordHash'),
+    password: 'passwordHash1',
     role: 'admin',
   },
   {
@@ -24,7 +23,7 @@ export const userData = [
   },
   {
     email: 'admin@mockpl.com',
-    password: 'passwordHash',
+    password: 'passwordHash1',
   },
   {
     username: faker.name.firstName(),

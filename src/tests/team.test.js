@@ -9,13 +9,9 @@ let adminUser;
 let teamId;
 
 beforeAll(async () => {
-  jest.setTimeout(10000);
-
   adminUser = await request(app)
     .post(`${API_PREFIX}/auth/signin`)
     .send(userData[4]);
-
-  console.log(adminUser);
 });
 
 describe('Test team', () => {

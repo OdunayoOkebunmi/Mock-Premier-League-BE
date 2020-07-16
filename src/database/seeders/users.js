@@ -3,7 +3,7 @@ import { hashPassword } from '../../middleware/authentication';
 import User from '../models/User';
 
 
-const password = hashPassword('passwordHash');
+const password = hashPassword('passwordHash1');
 
 const createSeededUsers = async () => {
   await User.deleteMany({});
