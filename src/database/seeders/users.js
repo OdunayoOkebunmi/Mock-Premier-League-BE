@@ -6,6 +6,7 @@ import User from '../models/User';
 const password = hashPassword('passwordHash');
 
 const createSeededUsers = async () => {
+  await User.deleteMany({});
   const user1 = new User({
     username: 'admin',
     email: 'admin@mockpl.com',

@@ -12,6 +12,7 @@ export const createUser = async (req, res, next) => {
         email, password, username,
       },
     } = req;
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return errorResponse(res, 409, { message: 'User already exist' });
