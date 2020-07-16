@@ -4,7 +4,7 @@ import app from '../server';
 import { teamData, userData } from './mockData';
 
 const API_PREFIX = '/api/v1';
-let adminToken;
+
 let adminUser;
 let teamId;
 
@@ -14,8 +14,6 @@ beforeAll(async () => {
   adminUser = await request(app)
     .post(`${API_PREFIX}/auth/signin`)
     .send(userData[4]);
-  const { token } = adminUser.body.user;
-  adminToken = token;
 });
 
 describe('Test team', () => {
@@ -23,7 +21,7 @@ describe('Test team', () => {
     const res = await request(app)
       .post(`${API_PREFIX}/team`)
       .send(teamData[0])
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(201);
     expect(typeof res.body).toBe('object');
     expect(res.body.team).toHaveProperty('data');
@@ -36,7 +34,7 @@ describe('Test team', () => {
     const res = await request(app)
       .post(`${API_PREFIX}/team`)
       .send(teamData[1])
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(400);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.errors).toBe('object');
@@ -47,7 +45,7 @@ describe('Test team', () => {
   it('should get all teams', async (done) => {
     const res = await request(app)
       .get(`${API_PREFIX}/team`)
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(200);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.team).toBe('object');
@@ -57,7 +55,7 @@ describe('Test team', () => {
   it('should get one team', async (done) => {
     const res = await request(app)
       .get(`${API_PREFIX}/team/${teamId}`)
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(200);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.team).toBe('object');
@@ -67,7 +65,7 @@ describe('Test team', () => {
     const res = await request(app)
       .put(`${API_PREFIX}/team/${teamId}`)
       .send(teamData[2])
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(200);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.team).toBe('object');
@@ -76,7 +74,7 @@ describe('Test team', () => {
   it('should delete a team', async (done) => {
     const res = await request(app)
       .delete(`${API_PREFIX}/team/${teamId}`)
-      .set('Authorization', `Bearer ${adminToken}`);
+      .set('Authorization', `Bearer ${adminUser.body.user.token}`);
     expect(res.status).toBe(200);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.team).toBe('object');
