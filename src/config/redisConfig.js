@@ -9,17 +9,13 @@ import connectRedis from 'connect-redis';
 import moment from 'moment';
 import Debug from 'debug';
 
-import { serverErrorResponse } from '../helper/responseHandler';
+import { errorResponse } from '../helper/responseHandler';
 
 dotenv.config();
 const debug = Debug(process.env.DEBUG);
 const { MAX_WINDOW_REQUEST_COUNT } = process.env;
 const RedisStore = connectRedis(session);
-export const redisClient = redis.createClient({
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-  password: process.env.REDIS_PASSWORD,
-});
+export const redisClient = redis.createClient(process.env.REDIS_URL);
 
 redisClient.on('error', err => debug(`Redis error: ${err}`));
 redisClient.on('ready', err => debug('Redis is ready'));
@@ -38,7 +34,7 @@ export const checkRateLimit = (req, res, next) => {
     }
     if (difference < 1) {
       if (req.session.user > MAX_WINDOW_REQUEST_COUNT) {
-        return serverErrorResponse(res, 429, { message: 'Throttled limit exceeded. Please wait a moment and try again' });
+        return errorResponse(res, 429, { message: 'Throttled limit exceeded. Please wait a moment and try again' });
       }
       req.session.user.count++;
       next();

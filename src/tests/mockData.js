@@ -23,8 +23,22 @@ export const userData = [
     password: 'passwordHash',
   },
   {
+    email: 'admin@mockpl.com',
+    password: 'passwordHash',
+  },
+  {
     username: faker.name.firstName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
+  },
+];
+
+export const teamData = [
+  {
+    name: 'South Hampthon',
+  },
+  {},
+  {
+    name: 'North Hampthon',
   },
 ];

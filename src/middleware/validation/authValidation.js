@@ -12,12 +12,12 @@ const AuthValidation = {
     check('username')
       .not()
       .isEmpty({ ignore_whitespace: true })
-      .withMessage('First name is required')
+      .withMessage('Username is required')
       .trim()
       .isLength({ min: 3, max: 15 })
-      .withMessage('First name must be between 3 to 15 characters')
+      .withMessage('Username must be between 3 to 15 characters')
       .matches((/^[a-z]{1,}[\s]{0,1}[-']{0,1}[a-z]+$/i))
-      .withMessage('First name can only contain letters'),
+      .withMessage('Username can only contain letters'),
     check('password')
       .not()
       .isEmpty({ ignore_whitespace: true })
