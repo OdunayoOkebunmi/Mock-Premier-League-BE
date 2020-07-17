@@ -46,7 +46,10 @@ export const getOneTeam = async (req, res, next) => {
 export const updateTeam = async (req, res, next) => {
   try {
     const { params: { id }, body: { name } } = req;
-
+    const teamExist = await Team.find({ name });
+    if (teamExist) {
+      return errorResponse(res, 409, { message: 'Name already exist!' });
+    }
     const data = await Team.findOneAndUpdate(
       { _id: id },
       { name },
