@@ -7,7 +7,7 @@
 https://mock-premier-league-be.herokuapp.com/
 
 ## API Documentation
-
+https://documenter.getpostman.com/view/10230743/T1DjiybW
 
 ## Table of Content
  * [Getting Started](#getting-started)
@@ -74,17 +74,6 @@ e.g npm run server
 
 ### Test
 run test using ```npm test```.
-
-### API End Points Test Using Postman
-
-<table>
-<tr><th>HTTP VERB</th><th>ENDPOINT</th><th>FUNCTIONALITY</th></tr>
-
-<tr><td>POST</td> <td>/api/v1/auth/signup</td>  <td>User signup</td></tr>
-
-<tr><td>POST</td> <td>/api/v1/auth/login</td>  <td>User signin</td></tr>
- 
-</table>
 
 ### Linting Style
 * ESLint with Airbnb style guide. 
