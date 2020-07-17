@@ -3,33 +3,43 @@ import faker from 'faker';
 
 export const userData = [
   {
-    username: 'admin',
-    email: 'admin@mockpl.com',
+    username: 'newUser',
+    email: 'newuser@mail.com',
+    password: 'passwordHash1',
+    role: 'regular',
+  },
+  {
+    email: 'newuser@mail.com',
+    password: 'passwordHash1',
+  },
+  {
+    username: 'Team Admin',
+    email: 'teamadmin@mail.com',
     password: 'passwordHash1',
     role: 'admin',
   },
   {
-    email: 'janedoe@mail.com',
+    email: 'teamadmin@mail.com',
     password: 'passwordHash1',
   },
   {
-    username: 'Jane',
-    email: 'janedoe@mail.com',
+    username: 'Fixture Admin',
+    email: 'fixtureadmin@mail.com',
     password: 'passwordHash1',
     role: 'admin',
   },
+  {
+    email: 'fixtureadmin@mail.com',
+    password: 'passwordHash1',
+  },
+
   {
     email: 'janedoex@gmail.com',
     password: 'passwordHash',
   },
   {
-    email: 'admin@mockpl.com',
-    password: 'passwordHash1',
-  },
-  {
-    username: faker.name.firstName(),
-    email: faker.internet.email(),
     password: faker.internet.password(),
+    email: faker.internet.email(),
   },
 ];
 
@@ -40,5 +50,27 @@ export const teamData = [
   {},
   {
     name: 'North Hampthon',
+  },
+];
+export const fixtureData = [
+  {
+    time: '2020-11-06T20:37:53.667Z',
+    home: 'Lemke Club',
+    away: 'Blandachester',
+    location: 'Throughway',
+    status: 'pending',
+  },
+  {
+    time: '2020-11-06T20:37:53.667Z',
+    away: 'Blandachester',
+    location: 'Throughway',
+    status: 'pending',
+  },
+  {
+    time: '2020-11-06T20:37:53.667Z',
+    home: 'Lemke Club',
+    away: 'Machester',
+    location: 'Throughway',
+    status: 'completed',
   },
 ];

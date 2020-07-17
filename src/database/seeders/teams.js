@@ -5,11 +5,11 @@ import Team from '../models/Team';
 const createSeededTeams = async () => {
   await Team.deleteMany({});
   const team1 = new Team({
-    name: faker.name.firstName(),
+    name: 'Gayle Nitzsche',
   });
 
   const team2 = new Team({
-    name: faker.name.firstName(),
+    name: 'Timmothy Balistreri',
   });
 
   const team3 = new Team({
