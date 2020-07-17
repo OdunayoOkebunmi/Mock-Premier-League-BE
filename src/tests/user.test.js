@@ -6,7 +6,7 @@ const API_PREFIX = '/api/v1/auth';
 
 describe('Test user', () => {
   it('should create a user succesfully', async (done) => {
-    const res = await request(app).post(`${API_PREFIX}/signup`).send(userData[2]);
+    const res = await request(app).post(`${API_PREFIX}/signup`).send(userData[0]);
     expect(res.status).toBe(201);
     expect(typeof res.body).toBe('object');
     expect(res.body.user).toHaveProperty('token');
@@ -14,7 +14,7 @@ describe('Test user', () => {
     done();
   });
   it('should validate user data', async (done) => {
-    const res = await request(app).post(`${API_PREFIX}/signup`).send(userData[3]);
+    const res = await request(app).post(`${API_PREFIX}/signup`).send(userData[6]);
     expect(res.status).toBe(400);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.errors).toBe('object');
@@ -29,8 +29,8 @@ describe('Test user', () => {
     expect(res.body.user).toHaveProperty('message');
     done();
   });
-  it('should validate user data', async (done) => {
-    const res = await request(app).post(`${API_PREFIX}/signin`).send(userData[3]);
+  it('should check if user exists', async (done) => {
+    const res = await request(app).post(`${API_PREFIX}/signin`).send(userData[7]);
     expect(res.status).toBe(404);
     expect(typeof res.body).toBe('object');
     expect(typeof res.body.errors).toBe('object');

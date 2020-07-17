@@ -1,28 +1,30 @@
 import mongoose, { Schema } from 'mongoose';
 
 const FixtureSchema = new Schema({
-  homeTeamId: {
-    type: Schema.Types.ObjectId,
+  time: {
+    type: String,
     required: true,
-    ref: 'Team',
   },
-  awayTeamId: {
-    type: Schema.Types.ObjectId,
+  home: {
+    type: Schema.Types.String,
+    ref: 'name',
+  },
+  away: {
+    type: Schema.Types.String,
+    ref: 'name',
+  },
+  location: {
+    type: String,
     required: true,
-    ref: 'Team',
   },
-  homeTeamScore: {
-    type: Number,
+  status: {
+    type: String,
+    default: 'pending',
+    enum: ['pending', 'completed'],
   },
-  awayTeamScore: {
-    type: Number,
-  },
-  matchDate: {
-    type: Date,
-  },
-  isPlayed: {
-    type: Boolean,
-    default: false,
+  slug: {
+    type: String,
+    required: true,
   },
 });
 const Fixture = mongoose.model('Fixture', FixtureSchema);

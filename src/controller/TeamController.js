@@ -52,7 +52,7 @@ export const updateTeam = async (req, res, next) => {
       { name },
       { new: true },
     );
-    if (data.length === 0) {
+    if (!data) {
       return errorResponse(res, 404, { message: 'Team not found!' });
     }
     return successResponse(res, 200, 'team', { message: 'Successfully updated team', data });
