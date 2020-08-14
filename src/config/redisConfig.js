@@ -11,11 +11,14 @@ import Debug from 'debug';
 
 import { errorResponse } from '../helper/responseHandler';
 
+const {
+  MAX_WINDOW_REQUEST_COUNT, DEBUG, REDIS_URL, REDIS_HOST, REDIS_PASSWORD, REDIS_PORT, REDIS_SECRET,
+} = process.env;
 dotenv.config();
-const debug = Debug(process.env.DEBUG);
-const { MAX_WINDOW_REQUEST_COUNT } = process.env;
+const debug = Debug(DEBUG);
+
 const RedisStore = connectRedis(session);
-export const redisClient = redis.createClient(process.env.REDIS_URL);
+export const redisClient = redis.createClient(REDIS_URL);
 
 redisClient.on('error', err => debug(`Redis error: ${err}`));
 redisClient.on('ready', err => debug('Redis is ready'));
@@ -52,13 +55,13 @@ export const checkRateLimit = (req, res, next) => {
 export default () => session({
   genid: req => uuid(),
   store: new RedisStore({
-    host: process.env.REDIS_HOST,
-    port: process.env.REDIS_PORT,
-    pass: process.env.REDIS_PASSWORD,
+    host: REDIS_HOST,
+    port: REDIS_PORT,
+    pass: REDIS_PASSWORD,
     client: redisClient,
   }),
   name: '_mockPremierLeague',
-  secret: process.env.REDIS_SECRET,
+  secret: REDIS_SECRET,
   resave: false,
   cookie: { secure: false, maxAge: 86400000 },
   saveUninitialized: true,

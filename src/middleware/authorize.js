@@ -1,4 +1,5 @@
 import { verifyToken } from './authentication';
+import { errorResponse } from '../helper/responseHandler';
 
 export const verifyUser = (req, res, next) => {
   try {
@@ -7,18 +8,14 @@ export const verifyUser = (req, res, next) => {
     req.user = decoded.payload;
     return next();
   } catch (error) {
-    return res.status(401).send({
-      error: 'Invalid or No token provided',
-    });
+    return errorResponse(res, 401, { message: 'Invalid or No token provided' });
   }
 };
 
 export const verifyAdmin = (req, res, next) => {
   const { user: { role } } = req;
   if (role !== 'admin') {
-    return res.status(403).json({
-      error: 'Only Admin can access this route',
-    });
+    return errorResponse(res, 403, { message: 'Only Admin can access this route' });
   }
   return next();
 };
