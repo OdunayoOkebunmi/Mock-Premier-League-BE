@@ -88,17 +88,13 @@ run test using ```npm test```.
 
  ### Users
  * A user can signup/login
- * A user can sview teams
+ * A user can view teams
  * A user can view completed fixtures
  * A user can view pending fixtures
  * A user can robustly search fixtures/teams
  
- * Only the search API should be availble to the public.
- 
+ * Only the search API should be available to the public.
 
-
-## Author
-*  [Odunayo Olajumoke Okebunmi](https://twitter.com/OdunayoO_)
 
 ## License
 This project is licensed under the MIT license - see the LICENSE.md file for details.
